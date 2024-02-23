@@ -4088,11 +4088,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arsns\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\arsns\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Backend.csproj",
+      "projectPath": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\arsns\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arsns\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\obj\\",
+      "outputPath": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\arsns\\AppData\\Roaming\\NuGet\\NuGet.Config",
