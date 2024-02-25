@@ -7,6 +7,22 @@
       "RelativeMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|solutionrelative:backend\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\backend\\repository\\contracts\\icountryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|solutionrelative:backend\\repository\\contracts\\icountryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\backend\\entities\\viewmodels\\countryviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|solutionrelative:backend\\entities\\viewmodels\\countryviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\backend\\repository\\services\\countryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|solutionrelative:backend\\repository\\services\\countryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\backend\\entities\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|solutionrelative:backend\\entities\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{724FB621-C7D8-4DDE-962D-FC3AC5705163}|Backend\\Backend.csproj|solutionrelative:backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -18,8 +34,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Country.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Entities\\Models\\Country.cs",
+              "RelativeDocumentMoniker": "Backend\\Entities\\Models\\Country.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Entities\\Models\\Country.cs",
+              "RelativeToolTip": "Backend\\Entities\\Models\\Country.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-24T18:03:17.008Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CountryViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Entities\\ViewModels\\CountryViewModel.cs",
+              "RelativeDocumentMoniker": "Backend\\Entities\\ViewModels\\CountryViewModel.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Entities\\ViewModels\\CountryViewModel.cs",
+              "RelativeToolTip": "Backend\\Entities\\ViewModels\\CountryViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-24T18:02:53.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CountryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Repository\\Services\\CountryRepository.cs",
+              "RelativeDocumentMoniker": "Backend\\Repository\\Services\\CountryRepository.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Repository\\Services\\CountryRepository.cs",
+              "RelativeToolTip": "Backend\\Repository\\Services\\CountryRepository.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAzwBoAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-24T17:10:27.347Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ICountryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Repository\\Contracts\\ICountryRepository.cs",
+              "RelativeDocumentMoniker": "Backend\\Repository\\Contracts\\ICountryRepository.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Repository\\Contracts\\ICountryRepository.cs",
+              "RelativeToolTip": "Backend\\Repository\\Contracts\\ICountryRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-02-24T17:04:41.17Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,23 +93,22 @@
               "RelativeDocumentMoniker": "Backend\\Controllers\\CountryController.cs",
               "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Controllers\\CountryController.cs",
               "RelativeToolTip": "Backend\\Controllers\\CountryController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "ViewState": "AQIAADwAAAAAAAAAAADwvxIAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-23T14:53:58.247Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Program.cs",
               "RelativeDocumentMoniker": "Backend\\Program.cs",
               "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Backend\\Program.cs",
               "RelativeToolTip": "Backend\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAaAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-22T20:35:33.68Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-02-22T20:35:33.68Z"
             }
           ]
         }
