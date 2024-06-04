@@ -77,7 +77,7 @@ public class ReviewerController : ControllerBase
         _context.Reviewers.Add(reviewer);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction("GetReviewer", new { id = reviewer.Id }, reviewer);
+        return CreatedAtAction(nameof(GetReviewer), new { id = reviewer.Id }, reviewer);
     }
 
     [HttpDelete("{id}")]

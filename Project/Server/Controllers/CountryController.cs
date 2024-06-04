@@ -77,7 +77,7 @@ public class CountryController : ControllerBase
         _context.Countries.Add(country);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction("GetCountry", new { id = country.Id }, country);
+        return CreatedAtAction(nameof(GetCountry), new { id = country.Id }, country);
     }
 
     [HttpDelete("{id}")]

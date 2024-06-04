@@ -77,7 +77,7 @@ public class AuthorController : ControllerBase
         _context.Authors.Add(author);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction("GetAuthor", new { id = author.Id }, author);
+        return CreatedAtAction(nameof(GetAuthor), new { id = author.Id }, author);
     }
 
     [HttpDelete("{id}")]

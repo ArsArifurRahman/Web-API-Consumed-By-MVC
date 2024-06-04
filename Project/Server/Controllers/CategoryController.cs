@@ -77,7 +77,7 @@ public class CategoryController : ControllerBase
         _context.Catagories.Add(category);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+        return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, category);
     }
 
     [HttpDelete("{id}")]
