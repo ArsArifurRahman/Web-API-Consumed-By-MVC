@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Server.Data;
+using Server.DTOs.Country;
 using Server.Models;
+using Server.Repository.Contracts;
 
 namespace Server.Controllers;
 
@@ -9,75 +9,85 @@ namespace Server.Controllers;
 [ApiController]
 public class CountryController : ControllerBase
 {
-    private readonly DataContext _context;
+    private readonly ICountryRepository _countryRepository;
 
-    public CountryController(DataContext context)
+    public CountryController(ICountryRepository countryRepository)
     {
-        _context = context;
+        _countryRepository = countryRepository;
     }
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
+    public async Task<ActionResult<IEnumerable<CountryListDto>>> GetCountries()
     {
-        return await _context.Countries.ToListAsync();
+        var countries = await _countryRepository.GetCountriesAsync();
+
+        var countryListDto = countries.Select(country => new CountryListDto
+        {
+            Name = country.Name ?? string.Empty
+        });
+
+        return Ok(countryListDto);
     }
+
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<Country>> GetCountry(int id)
+    public async Task<ActionResult<CountryReadDto>> GetCountry(int id)
     {
-        var country = await _context.Countries.FindAsync(id);
+        var country = await _countryRepository.GetCountryAsync(id);
 
         if (country == null)
         {
-            return NotFound();
+            return NotFound("Country not found.");
         }
 
-        return country;
+        var countryReadDto = new CountryReadDto
+        {
+            Id = country.Id,
+            Name = country.Name ?? string.Empty
+        };
+
+        return Ok(countryReadDto);
+    }
+
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<ActionResult<Country>> PostCountry(CountryCreateDto countryCreateDto)
+    {
+        var country = new Country
+        {
+            Name = countryCreateDto.Name
+        };
+
+        var createdCountry = await _countryRepository.AddCountryAsync(country);
+        return CreatedAtAction(nameof(GetCountry), new { id = createdCountry.Id }, createdCountry);
     }
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> PutCountry(int id, Country country)
+    public async Task<IActionResult> PutCountry(int id, CountryUpdateDto countryUpdateDto)
     {
-        if (id != country.Id)
+        if (id != countryUpdateDto.Id)
         {
-            return BadRequest();
+            return BadRequest("Country ID mismatch.");
         }
 
-        _context.Entry(country).State = EntityState.Modified;
+        var country = await _countryRepository.GetCountryAsync(id);
 
-        try
+        if (country == null)
         {
-            await _context.SaveChangesAsync();
+            return NotFound("Country not found.");
         }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!CountryExists(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
+
+        country.Name = countryUpdateDto.Name ?? country.Name;
+        await _countryRepository.EditCountryAsync(id, country);
 
         return NoContent();
-    }
-
-    [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<ActionResult<Country>> PostCountry(Country country)
-    {
-        _context.Countries.Add(country);
-        await _context.SaveChangesAsync();
-
-        return CreatedAtAction(nameof(GetCountry), new { id = country.Id }, country);
     }
 
     [HttpDelete("{id}")]
@@ -85,21 +95,14 @@ public class CountryController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteCountry(int id)
     {
-        var country = await _context.Countries.FindAsync(id);
+        var country = await _countryRepository.GetCountryAsync(id);
         if (country == null)
         {
-            return NotFound();
+            return NotFound("Country not found.");
         }
 
-        _context.Countries.Remove(country);
-        await _context.SaveChangesAsync();
+        await _countryRepository.GetCountryAsync(id);
 
         return NoContent();
     }
-
-    private bool CountryExists(int id)
-    {
-        return _context.Countries.Any(e => e.Id == id);
-    }
 }
-

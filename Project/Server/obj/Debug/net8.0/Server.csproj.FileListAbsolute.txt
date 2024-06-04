@@ -111,6 +111,7 @@ C:\Users\arsns\OneDrive\Desktop\Work\Web-API-Consumed-By-MVC\Project\Server\obj\
 C:\Users\arsns\OneDrive\Desktop\Work\Web-API-Consumed-By-MVC\Project\Server\obj\Debug\net8.0\Server.csproj.CoreCompileInputs.cache
 C:\Users\arsns\OneDrive\Desktop\Work\Web-API-Consumed-By-MVC\Project\Server\obj\Debug\net8.0\Server.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\arsns\OneDrive\Desktop\Work\Web-API-Consumed-By-MVC\Project\Server\obj\Debug\net8.0\Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\arsns\OneDrive\Desktop\Work\Web-API-Consumed-By-MVC\Project\Server\obj\Debug\net8.0\Server.sourcelink.json
 C:\Users\arsns\OneDrive\Desktop\Work\Web-API-Consumed-By-MVC\Project\Server\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\arsns\OneDrive\Desktop\Work\Web-API-Consumed-By-MVC\Project\Server\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\arsns\OneDrive\Desktop\Work\Web-API-Consumed-By-MVC\Project\Server\obj\Debug\net8.0\staticwebassets\msbuild.Server.Microsoft.AspNetCore.StaticWebAssets.props

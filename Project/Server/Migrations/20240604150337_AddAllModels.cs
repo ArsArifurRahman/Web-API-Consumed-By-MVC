@@ -170,11 +170,11 @@ namespace Server.Migrations
                 columns: new[] { "Id", "Isbn", "PublishedAt", "Title" },
                 values: new object[,]
                 {
-                    { 1, "1234567890", new DateTimeOffset(new DateTime(2024, 6, 4, 12, 22, 10, 368, DateTimeKind.Unspecified).AddTicks(5226), new TimeSpan(0, 6, 0, 0, 0)), "Book 1" },
-                    { 2, "2345678901", new DateTimeOffset(new DateTime(2024, 6, 4, 12, 22, 10, 368, DateTimeKind.Unspecified).AddTicks(5268), new TimeSpan(0, 6, 0, 0, 0)), "Book 2" },
-                    { 3, "3456789012", new DateTimeOffset(new DateTime(2024, 6, 4, 12, 22, 10, 368, DateTimeKind.Unspecified).AddTicks(5270), new TimeSpan(0, 6, 0, 0, 0)), "Book 3" },
-                    { 4, "4567890123", new DateTimeOffset(new DateTime(2024, 6, 4, 12, 22, 10, 368, DateTimeKind.Unspecified).AddTicks(5272), new TimeSpan(0, 6, 0, 0, 0)), "Book 4" },
-                    { 5, "5678901234", new DateTimeOffset(new DateTime(2024, 6, 4, 12, 22, 10, 368, DateTimeKind.Unspecified).AddTicks(5274), new TimeSpan(0, 6, 0, 0, 0)), "Book 5" }
+                    { 1, "1234567890", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(6960), new TimeSpan(0, 6, 0, 0, 0)), "Book 1" },
+                    { 2, "2345678901", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7010), new TimeSpan(0, 6, 0, 0, 0)), "Book 2" },
+                    { 3, "3456789012", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7014), new TimeSpan(0, 6, 0, 0, 0)), "Book 3" },
+                    { 4, "4567890123", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7016), new TimeSpan(0, 6, 0, 0, 0)), "Book 4" },
+                    { 5, "5678901234", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7019), new TimeSpan(0, 6, 0, 0, 0)), "Book 5" }
                 });
 
             migrationBuilder.InsertData(
