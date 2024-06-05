@@ -95,13 +95,14 @@ public class CountryController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteCountry(int id)
     {
-        var country = await _countryRepository.GetCountryAsync(id);
-        if (country == null)
+        try
         {
-            return NotFound("Country not found.");
+            await _countryRepository.DeleteCountryAsync(id);
         }
-
-        await _countryRepository.GetCountryAsync(id);
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
+        }
 
         return NoContent();
     }
