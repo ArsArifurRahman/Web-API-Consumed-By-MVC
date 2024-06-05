@@ -31,12 +31,12 @@ public class CountryController : ControllerBase
     }
 
 
-    [HttpGet("{id}")]
+    [HttpGet("{countryId}", Name = nameof(GetCountry))]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CountryReadDto>> GetCountry(int id)
+    public async Task<ActionResult<CountryReadDto>> GetCountry(int countryId)
     {
-        var country = await _countryRepository.GetCountryAsync(id);
+        var country = await _countryRepository.GetCountryAsync(countryId);
 
         if (country == null)
         {
@@ -105,5 +105,26 @@ public class CountryController : ControllerBase
         }
 
         return NoContent();
+    }
+
+    [HttpGet("authors/{authorId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<CountryReadDto>> GetCountryOfAnAuthor(int authorId)
+    {
+        try
+        {
+            var country = await _countryRepository.GetCountryOfAnAuthorAsync(authorId);
+            var countryReadDto = new CountryReadDto
+            {
+                Id = country.Id,
+                Name = country.Name ?? string.Empty,
+            };
+            return Ok(countryReadDto);
+        }
+        catch (ArgumentException ex)
+        {
+            return NotFound(ex.Message);
+        }
     }
 }
