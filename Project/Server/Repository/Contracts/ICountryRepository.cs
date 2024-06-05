@@ -11,4 +11,6 @@ public interface ICountryRepository
     Task DeleteCountryAsync(int id);
     Task<Country> GetCountryOfAnAuthorAsync(int authorId);
     Task<IEnumerable<Author>> GetAuthorsFromACountryAsync(int id);
+    Task<bool> IsCountryDuplicate(int countryId, string countryName);
+    Task<bool> IsCountryExists(int countryId);
 }

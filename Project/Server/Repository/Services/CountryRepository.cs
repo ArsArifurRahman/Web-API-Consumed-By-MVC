@@ -69,13 +69,33 @@ public class CountryRepository : ICountryRepository
         await _context.SaveChangesAsync();
     }
 
-    public Task<IEnumerable<Author>> GetAuthorsFromACountryAsync(int id)
+    public async Task<IEnumerable<Author>> GetAuthorsFromACountryAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Authors.Where(x => x.CountryId == id).ToListAsync();
     }
 
-    public Task<Country> GetCountryOfAnAuthorAsync(int authorId)
+    public async Task<Country> GetCountryOfAnAuthorAsync(int authorId)
     {
-        throw new NotImplementedException();
+        var country = await _context.Authors.Where(x => x.Id == authorId).Select(y => y.Country).FirstOrDefaultAsync();
+
+        if (country == null)
+        {
+            throw new ArgumentException($"Country Author with ID {authorId} not found.");
+        }
+
+        return country;
+    }
+
+    public async Task<bool> IsCountryDuplicate(int id, string countryName)
+    {
+        var country = await _context.Countries.Where(x => x.Name != null && x.Name.Trim().ToLower() == countryName.Trim().ToLower() && x.Id != id).FirstOrDefaultAsync();
+
+        return country != null;
+    }
+
+    public async Task<bool> IsCountryExists(int id)
+    {
+        var country = await _context.Countries.FirstOrDefaultAsync(x => x.Id == id);
+        return country != null;
     }
 }
