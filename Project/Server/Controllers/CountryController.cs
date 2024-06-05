@@ -66,18 +66,18 @@ public class CountryController : ControllerBase
         return CreatedAtAction(nameof(GetCountry), new { id = createdCountry.Id }, createdCountry);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{countryId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> PutCountry(int id, CountryUpdateDto countryUpdateDto)
+    public async Task<IActionResult> PutCountry(int countryId, CountryUpdateDto countryUpdateDto)
     {
-        if (id != countryUpdateDto.Id)
+        if (countryId != countryUpdateDto.Id)
         {
             return BadRequest("Country ID mismatch.");
         }
 
-        var country = await _countryRepository.GetCountryAsync(id);
+        var country = await _countryRepository.GetCountryAsync(countryId);
 
         if (country == null)
         {
@@ -85,19 +85,19 @@ public class CountryController : ControllerBase
         }
 
         country.Name = countryUpdateDto.Name ?? country.Name;
-        await _countryRepository.EditCountryAsync(id, country);
+        await _countryRepository.EditCountryAsync(countryId, country);
 
         return NoContent();
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{countryId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteCountry(int id)
+    public async Task<IActionResult> DeleteCountry(int countryId)
     {
         try
         {
-            await _countryRepository.DeleteCountryAsync(id);
+            await _countryRepository.DeleteCountryAsync(countryId);
         }
         catch (KeyNotFoundException)
         {
