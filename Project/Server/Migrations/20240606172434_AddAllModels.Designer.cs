@@ -11,7 +11,7 @@ using Server.Data;
 namespace Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240604150337_AddAllModels")]
+    [Migration("20240606172434_AddAllModels")]
     partial class AddAllModels
     {
         /// <inheritdoc />
@@ -111,35 +111,35 @@ namespace Server.Migrations
                         {
                             Id = 1,
                             Isbn = "1234567890",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(6960), new TimeSpan(0, 6, 0, 0, 0)),
+                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(5955), new TimeSpan(0, 6, 0, 0, 0)),
                             Title = "Book 1"
                         },
                         new
                         {
                             Id = 2,
                             Isbn = "2345678901",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7010), new TimeSpan(0, 6, 0, 0, 0)),
+                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6045), new TimeSpan(0, 6, 0, 0, 0)),
                             Title = "Book 2"
                         },
                         new
                         {
                             Id = 3,
                             Isbn = "3456789012",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7014), new TimeSpan(0, 6, 0, 0, 0)),
+                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6048), new TimeSpan(0, 6, 0, 0, 0)),
                             Title = "Book 3"
                         },
                         new
                         {
                             Id = 4,
                             Isbn = "4567890123",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7016), new TimeSpan(0, 6, 0, 0, 0)),
+                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6051), new TimeSpan(0, 6, 0, 0, 0)),
                             Title = "Book 4"
                         },
                         new
                         {
                             Id = 5,
                             Isbn = "5678901234",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7019), new TimeSpan(0, 6, 0, 0, 0)),
+                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6054), new TimeSpan(0, 6, 0, 0, 0)),
                             Title = "Book 5"
                         });
                 });
@@ -241,7 +241,7 @@ namespace Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Catagories");
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new

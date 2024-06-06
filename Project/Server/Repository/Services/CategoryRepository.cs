@@ -1,4 +1,5 @@
-﻿using Server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Server.Data;
 using Server.Models;
 using Server.Repository.Contracts;
 
@@ -13,28 +14,36 @@ public class CategoryRepository : ICategoryRepository
         _context = context;
     }
 
-    public Task<IEnumerable<Category>> GetCategoriesAsync()
+    public async Task<IEnumerable<Category>> GetCategoriesAsync()
     {
-        throw new NotImplementedException();
+        return await _context.Categories.ToListAsync();
     }
 
-    public Task<Category> GetCategoryAsync(int id)
+    public async Task<Category> GetCategoryAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Categories.FirstOrDefaultAsync(x => x.Id == id) ?? throw new InvalidOperationException("Category not found!");
     }
 
-    public Task<Category> AddCategoryAsync(Category category)
+    public async Task<Category> AddCategoryAsync(Category category)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(category);
+        await _context.Categories.AddAsync(category);
+        await _context.SaveChangesAsync();
+        return category;
     }
 
-    public Task EditCategoryAsync(int id, Category category)
+    public async Task EditCategoryAsync(int id, Category category)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(category);
+        var existingCategory = await GetCategoryAsync(id) ?? throw new KeyNotFoundException("The existing category with the given id was not found.");
+        _context.Entry(existingCategory).CurrentValues.SetValues(category);
+        await _context.SaveChangesAsync();
     }
 
-    public Task DeleteCategoryAsync(int id)
+    public async Task DeleteCategoryAsync(int id)
     {
-        throw new NotImplementedException();
+        var category = await GetCategoryAsync(id);
+        _context.Categories.Remove(category);
+        await _context.SaveChangesAsync();
     }
 }

@@ -21,8 +21,7 @@ public class CountryRepository : ICountryRepository
 
     public async Task<Country> GetCountryAsync(int id)
     {
-        var country = await _context.Countries.FirstOrDefaultAsync(x => x.Id == id) ?? throw new InvalidOperationException("Country not found!");
-        return country;
+        return await _context.Countries.FirstOrDefaultAsync(x => x.Id == id) ?? throw new InvalidOperationException("Country not found!");
     }
 
     public async Task<Country> AddCountryAsync(Country country)

@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|solutionrelative:server\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|solutionrelative:server\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|solutionrelative:server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|solutionrelative:server\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,15 +31,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ServiceCollectionExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Extensions\\ServiceCollectionExtensions.cs",
+              "RelativeDocumentMoniker": "Server\\Extensions\\ServiceCollectionExtensions.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Extensions\\ServiceCollectionExtensions.cs",
+              "RelativeToolTip": "Server\\Extensions\\ServiceCollectionExtensions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T18:52:43.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DataContext.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Data\\DataContext.cs",
+              "RelativeDocumentMoniker": "Server\\Data\\DataContext.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Data\\DataContext.cs",
+              "RelativeToolTip": "Server\\Data\\DataContext.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T18:42:40.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Program.cs",
+              "RelativeDocumentMoniker": "Server\\Program.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Program.cs",
+              "RelativeToolTip": "Server\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T18:34:11.333Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "Server\\Controllers\\CategoryController.cs",
               "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Controllers\\CategoryController.cs",
               "RelativeToolTip": "Server\\Controllers\\CategoryController.cs",
-              "ViewState": "AQIAAFIAAAAAAAAAAAAkwFsAAAAAAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAwwB4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T23:05:39.493Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-06T17:43:21.52Z"
             }
           ]
         }

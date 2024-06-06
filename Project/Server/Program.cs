@@ -1,19 +1,13 @@
-using Microsoft.EntityFrameworkCore;
-using Server.Data;
-using Server.Repository.Contracts;
-using Server.Repository.Services;
+using Server.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlite(builder.Configuration.GetConnectionString("DCS"));
-});
+builder.Services.AddCustomDbContext(builder.Configuration);
+builder.Services.AddRepositories();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 
 var app = builder.Build();
 

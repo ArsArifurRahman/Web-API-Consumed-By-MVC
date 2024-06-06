@@ -1,91 +1,107 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Server.Data;
+using Server.DTOs.Category;
 using Server.Models;
+using Server.Repository.Contracts;
 
-namespace Server.Controllers
+namespace Server.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class CategoryController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoryController : ControllerBase
+    private readonly ICategoryRepository _categoryRepository;
+
+    public CategoryController(ICategoryRepository categoryRepository)
     {
-        private readonly DataContext _context;
+        _categoryRepository = categoryRepository;
+    }
 
-        public CategoryController(DataContext context)
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<CategoryListDto>>> GetCategories()
+    {
+        var categories = await _categoryRepository.GetCategoriesAsync();
+
+        var categoryListDto = categories.Select(category => new CategoryListDto
         {
-            _context = context;
+            Name = category.Name ?? string.Empty
+        });
+
+        return Ok(categoryListDto);
+    }
+
+    [HttpGet("{categoryId}", Name = nameof(GetCategory))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<CategoryReadDto>> GetCategory(int categoryId)
+    {
+        var category = await _categoryRepository.GetCategoryAsync(categoryId);
+
+        if (category == null)
+        {
+            return NotFound("Category not found.");
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCatagories()
+        var categoryReadDto = new CategoryReadDto
         {
-            return await _context.Catagories.ToListAsync();
+            Id = category.Id,
+            Name = category.Name ?? string.Empty
+        };
+
+        return Ok(categoryReadDto);
+    }
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<ActionResult<Category>> PostCategory(CategoryCreateDto categoryCreateDto)
+    {
+        var category = new Category
+        {
+            Name = categoryCreateDto.Name
+        };
+
+        var createdCategory = await _categoryRepository.AddCategoryAsync(category);
+        return CreatedAtAction(nameof(GetCategory), new { id = createdCategory.Id }, createdCategory);
+    }
+
+    [HttpPut("{categoryId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> PutCategory(int categoryId, CategoryUpdateDto categoryUpdateDto)
+    {
+        if (categoryId != categoryUpdateDto.Id)
+        {
+            return BadRequest("Category ID mismatch.");
         }
 
-        [HttpGet("{categoryId}")]
-        public async Task<ActionResult<Category>> GetCategory(int categoryId)
+        var category = await _categoryRepository.GetCategoryAsync(categoryId);
+
+        if (category == null)
         {
-            var category = await _context.Catagories.FindAsync(categoryId);
-
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return category;
+            return NotFound("Category not found.");
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Category>> PostCategory(Category category)
-        {
-            _context.Catagories.Add(category);
-            await _context.SaveChangesAsync();
+        category.Name = categoryUpdateDto.Name ?? category.Name;
+        await _categoryRepository.EditCategoryAsync(categoryId, category);
 
-            return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, category);
+        return NoContent();
+    }
+
+    [HttpDelete("{categoryId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteCategory(int categoryId)
+    {
+        try
+        {
+            await _categoryRepository.DeleteCategoryAsync(categoryId);
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
         }
 
-        [HttpPut("{categoryId}")]
-        public async Task<IActionResult> PutCategory(int categoryId, Category category)
-        {
-            if (categoryId != category.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(category).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CategoryExists(categoryId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        [HttpDelete("{categoryId}")]
-        public async Task<IActionResult> DeleteCategory(int categoryId)
-        {
-            var category = await _context.Catagories.FindAsync(categoryId);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            _context.Catagories.Remove(category);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
+        return NoContent();
     }
 }

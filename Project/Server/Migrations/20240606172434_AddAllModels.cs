@@ -28,7 +28,7 @@ namespace Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Catagories",
+                name: "Categories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -37,7 +37,7 @@ namespace Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Catagories", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,9 +84,9 @@ namespace Server.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookCategories_Catagories_CategoryId",
+                        name: "FK_BookCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Catagories",
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -170,15 +170,15 @@ namespace Server.Migrations
                 columns: new[] { "Id", "Isbn", "PublishedAt", "Title" },
                 values: new object[,]
                 {
-                    { 1, "1234567890", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(6960), new TimeSpan(0, 6, 0, 0, 0)), "Book 1" },
-                    { 2, "2345678901", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7010), new TimeSpan(0, 6, 0, 0, 0)), "Book 2" },
-                    { 3, "3456789012", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7014), new TimeSpan(0, 6, 0, 0, 0)), "Book 3" },
-                    { 4, "4567890123", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7016), new TimeSpan(0, 6, 0, 0, 0)), "Book 4" },
-                    { 5, "5678901234", new DateTimeOffset(new DateTime(2024, 6, 4, 21, 3, 36, 306, DateTimeKind.Unspecified).AddTicks(7019), new TimeSpan(0, 6, 0, 0, 0)), "Book 5" }
+                    { 1, "1234567890", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(5955), new TimeSpan(0, 6, 0, 0, 0)), "Book 1" },
+                    { 2, "2345678901", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6045), new TimeSpan(0, 6, 0, 0, 0)), "Book 2" },
+                    { 3, "3456789012", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6048), new TimeSpan(0, 6, 0, 0, 0)), "Book 3" },
+                    { 4, "4567890123", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6051), new TimeSpan(0, 6, 0, 0, 0)), "Book 4" },
+                    { 5, "5678901234", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6054), new TimeSpan(0, 6, 0, 0, 0)), "Book 5" }
                 });
 
             migrationBuilder.InsertData(
-                table: "Catagories",
+                table: "Categories",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
@@ -303,7 +303,7 @@ namespace Server.Migrations
                 name: "Authors");
 
             migrationBuilder.DropTable(
-                name: "Catagories");
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Books");
