@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Server.Data;
+using Server.DTOs.Country;
 using Server.Models;
 using Server.Repository.Contracts;
 
@@ -11,61 +12,133 @@ public class CountryRepository : ICountryRepository
 
     public CountryRepository(DataContext context)
     {
-        _context = context;
+        _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<IEnumerable<Country>> GetCountriesAsync()
+    public async Task<IEnumerable<CountryListDto>> GetCountriesAsync()
     {
-        return await _context.Countries.ToListAsync();
+        try
+        {
+            // Retrieve all countries from the database
+            var countries = await _context.Countries.ToListAsync();
+
+            // Check if the countries list is null
+            if (countries == null)
+            {
+                throw new InvalidOperationException("Failed to retrieve countries.");
+            }
+
+            // Convert the countries to CountryListDto objects
+            var countryListDto = countries.Select(country => new CountryListDto
+            {
+                Name = country.Name ?? string.Empty
+            });
+
+            return countryListDto;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Failed to retrieve countries.", ex);
+        }
     }
 
-    public async Task<Country> GetCountryAsync(int id)
+    public async Task<CountryReadDto> GetCountryAsync(int id)
     {
-        return await _context.Countries.FirstOrDefaultAsync(x => x.Id == id) ?? throw new InvalidOperationException("Country not found!");
+        try
+        {
+            // Retrieve the country from the database
+            var country = await _context.Countries.FirstOrDefaultAsync(x => x.Id == id);
+
+            // Check if the country exists
+            if (country == null)
+            {
+                throw new KeyNotFoundException("The country with the given id was not found.");
+            }
+
+            // Convert the country to a CountryReadDto object
+            var countryReadDto = new CountryReadDto
+            {
+                Id = country.Id,
+                Name = country.Name ?? string.Empty
+            };
+
+            return countryReadDto;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Failed to retrieve country.", ex);
+        }
     }
 
-    public async Task<Country> AddCountryAsync(Country country)
+    public async Task<CountryCreateDto> AddCountryAsync(CountryCreateDto countryCreateDto)
     {
-        ArgumentNullException.ThrowIfNull(country);
-        await _context.Countries.AddAsync(country);
-        await _context.SaveChangesAsync();
-        return country;
+        try
+        {
+            // Check if the countryCreateDto is null
+            ArgumentNullException.ThrowIfNull(countryCreateDto);
+
+            // Create a new country
+            var country = new Country { Name = countryCreateDto.Name };
+
+            // Add the country to the database
+            await _context.Countries.AddAsync(country);
+
+            // Save the changes to the database
+            await _context.SaveChangesAsync();
+
+            // Convert the country to a CountryCreateDto object
+            return new CountryCreateDto { Name = country.Name };
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Failed to add country.", ex);
+        }
     }
-    public async Task EditCountryAsync(int id, Country country)
+
+    public async Task EditCountryAsync(int id, CountryUpdateDto countryUpdateDto)
     {
-        ArgumentNullException.ThrowIfNull(country);
-        var existingCountry = await GetCountryAsync(id) ?? throw new KeyNotFoundException("The existing country with the given id was not found.");
-        _context.Entry(existingCountry).CurrentValues.SetValues(country);
-        await _context.SaveChangesAsync();
+        try
+        {
+            // Check if the countryUpdateDto is null
+            ArgumentNullException.ThrowIfNull(countryUpdateDto);
+
+            // Retrieve the country from the database
+            var existingCountry = await GetCountryAsync(id);
+
+            // Update the country's name
+            existingCountry.Name = countryUpdateDto.Name ?? existingCountry.Name;
+
+            // Save the changes to the database
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Failed to edit country.", ex);
+        }
     }
 
     public async Task DeleteCountryAsync(int id)
     {
-        var country = await GetCountryAsync(id);
-        _context.Countries.Remove(country);
-        await _context.SaveChangesAsync();
-    }
+        try
+        {
+            // Retrieve the country from the database
+            var country = await _context.Countries.FirstOrDefaultAsync(x => x.Id == id);
 
-    public async Task<IEnumerable<Author>> GetAuthorsFromACountryAsync(int id)
-    {
-        return await _context.Authors.Where(x => x.CountryId == id).ToListAsync();
-    }
+            // Check if the country exists
+            if (country == null)
+            {
+                throw new KeyNotFoundException("The country with the given id was not found.");
+            }
 
-    public async Task<Country> GetCountryOfAnAuthorAsync(int authorId)
-    {
-        var country = await _context.Authors.Where(x => x.Id == authorId).Select(y => y.Country).FirstOrDefaultAsync() ?? throw new ArgumentException($"Country Author with ID {authorId} not found.");
-        return country;
-    }
+            // Remove the country from the database
+            _context.Countries.Remove(country);
 
-    public async Task<bool> IsCountryDuplicate(int id, string countryName)
-    {
-        var country = await _context.Countries.Where(x => x.Name != null && x.Name.Trim().Equals(countryName.Trim(), StringComparison.CurrentCultureIgnoreCase) && x.Id != id).FirstOrDefaultAsync();
-        return country != null;
-    }
-
-    public async Task<bool> IsCountryExists(int id)
-    {
-        var country = await _context.Countries.FirstOrDefaultAsync(x => x.Id == id);
-        return country != null;
+            // Save the changes to the database
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Failed to delete country.", ex);
+        }
     }
 }

@@ -11,8 +11,8 @@ using Server.Data;
 namespace Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240606172434_AddAllModels")]
-    partial class AddAllModels
+    [Migration("20240607214915_AddAllmodel")]
+    partial class AddAllmodel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,36 +50,36 @@ namespace Server.Migrations
                         {
                             Id = 1,
                             CountryId = 1,
-                            FirstName = "John",
-                            LastName = "Doe"
+                            FirstName = "Stephen",
+                            LastName = "King"
                         },
                         new
                         {
                             Id = 2,
-                            CountryId = 1,
-                            FirstName = "Jane",
-                            LastName = "Doe"
+                            CountryId = 2,
+                            FirstName = "J.K.",
+                            LastName = "Rowling"
                         },
                         new
                         {
                             Id = 3,
-                            CountryId = 2,
-                            FirstName = "Alice",
-                            LastName = "Smith"
+                            CountryId = 3,
+                            FirstName = "Margaret",
+                            LastName = "Atwood"
                         },
                         new
                         {
                             Id = 4,
-                            CountryId = 2,
-                            FirstName = "Bob",
-                            LastName = "Johnson"
+                            CountryId = 4,
+                            FirstName = "Tim",
+                            LastName = "Winton"
                         },
                         new
                         {
                             Id = 5,
-                            CountryId = 3,
-                            FirstName = "Charlie",
-                            LastName = "Brown"
+                            CountryId = 5,
+                            FirstName = "Arundhati",
+                            LastName = "Roy"
                         });
                 });
 
@@ -104,43 +104,43 @@ namespace Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.ToTable("Book");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Isbn = "1234567890",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(5955), new TimeSpan(0, 6, 0, 0, 0)),
-                            Title = "Book 1"
+                            Isbn = "9781501142970",
+                            PublishedAt = new DateTimeOffset(new DateTime(1986, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)),
+                            Title = "It"
                         },
                         new
                         {
                             Id = 2,
-                            Isbn = "2345678901",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6045), new TimeSpan(0, 6, 0, 0, 0)),
-                            Title = "Book 2"
+                            Isbn = "9780747532743",
+                            PublishedAt = new DateTimeOffset(new DateTime(1997, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)),
+                            Title = "Harry Potter and the Philosopher's Stone"
                         },
                         new
                         {
                             Id = 3,
-                            Isbn = "3456789012",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6048), new TimeSpan(0, 6, 0, 0, 0)),
-                            Title = "Book 3"
+                            Isbn = "9780385490818",
+                            PublishedAt = new DateTimeOffset(new DateTime(1985, 2, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)),
+                            Title = "The Handmaid's Tale"
                         },
                         new
                         {
                             Id = 4,
-                            Isbn = "4567890123",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6051), new TimeSpan(0, 6, 0, 0, 0)),
-                            Title = "Book 4"
+                            Isbn = "9780330412388",
+                            PublishedAt = new DateTimeOffset(new DateTime(1991, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)),
+                            Title = "Cloudstreet"
                         },
                         new
                         {
                             Id = 5,
-                            Isbn = "5678901234",
-                            PublishedAt = new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6054), new TimeSpan(0, 6, 0, 0, 0)),
-                            Title = "Book 5"
+                            Isbn = "9780006550686",
+                            PublishedAt = new DateTimeOffset(new DateTime(1997, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)),
+                            Title = "The God of Small Things"
                         });
                 });
 
@@ -204,27 +204,27 @@ namespace Server.Migrations
                         new
                         {
                             BookId = 1,
-                            CategoryId = 1
+                            CategoryId = 5
                         },
                         new
                         {
                             BookId = 2,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            BookId = 3,
-                            CategoryId = 3
-                        },
-                        new
-                        {
-                            BookId = 4,
                             CategoryId = 4
                         },
                         new
                         {
+                            BookId = 3,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            BookId = 4,
+                            CategoryId = 1
+                        },
+                        new
+                        {
                             BookId = 5,
-                            CategoryId = 5
+                            CategoryId = 1
                         });
                 });
 
@@ -247,27 +247,27 @@ namespace Server.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Category 1"
+                            Name = "Fiction"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Category 2"
+                            Name = "Non-Fiction"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Category 3"
+                            Name = "Biography"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Category 4"
+                            Name = "Children's"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Category 5"
+                            Name = "Mystery"
                         });
                 });
 
@@ -290,27 +290,27 @@ namespace Server.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Country 1"
+                            Name = "United States"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Country 2"
+                            Name = "United Kingdom"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Country 3"
+                            Name = "Canada"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Country 4"
+                            Name = "Australia"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Country 5"
+                            Name = "India"
                         });
                 });
 
@@ -352,45 +352,45 @@ namespace Server.Migrations
                         {
                             Id = 1,
                             BookId = 1,
-                            Headline = "Review 1",
+                            Headline = "Terrifying Read",
                             Rating = 5,
-                            ReviewText = "This is review 1",
+                            ReviewText = "Stephen King's 'It' is a terrifying journey into the depths of fear.",
                             ReviewerId = 1
                         },
                         new
                         {
                             Id = 2,
                             BookId = 2,
-                            Headline = "Review 2",
-                            Rating = 4,
-                            ReviewText = "This is review 2",
+                            Headline = "Magical Adventure",
+                            Rating = 5,
+                            ReviewText = "Rowling's debut novel is a magical adventure for all ages.",
                             ReviewerId = 2
                         },
                         new
                         {
                             Id = 3,
                             BookId = 3,
-                            Headline = "Review 3",
-                            Rating = 3,
-                            ReviewText = "This is review 3",
+                            Headline = "Dystopian Masterpiece",
+                            Rating = 5,
+                            ReviewText = "Atwood's 'The Handmaid's Tale' is a chilling vision of a dystopian future.",
                             ReviewerId = 3
                         },
                         new
                         {
                             Id = 4,
                             BookId = 4,
-                            Headline = "Review 4",
-                            Rating = 2,
-                            ReviewText = "This is review 4",
+                            Headline = "Australian Classic",
+                            Rating = 4,
+                            ReviewText = "Winton's 'Cloudstreet' is a sprawling epic of Australian life.",
                             ReviewerId = 4
                         },
                         new
                         {
                             Id = 5,
                             BookId = 5,
-                            Headline = "Review 5",
-                            Rating = 1,
-                            ReviewText = "This is review 5",
+                            Headline = "Beautiful and Heartbreaking",
+                            Rating = 4,
+                            ReviewText = "Roy's debut novel is a beautiful and heartbreaking tale of love and loss.",
                             ReviewerId = 5
                         });
                 });
@@ -419,32 +419,32 @@ namespace Server.Migrations
                         new
                         {
                             Id = 1,
-                            FirstName = "Reviewer 1",
-                            LastName = "Last 1"
+                            FirstName = "James",
+                            LastName = "Wood"
                         },
                         new
                         {
                             Id = 2,
-                            FirstName = "Reviewer 2",
-                            LastName = "Last 2"
+                            FirstName = "Michiko",
+                            LastName = "Kakutani"
                         },
                         new
                         {
                             Id = 3,
-                            FirstName = "Reviewer 3",
-                            LastName = "Last 3"
+                            FirstName = "Ron",
+                            LastName = "Charles"
                         },
                         new
                         {
                             Id = 4,
-                            FirstName = "Reviewer 4",
-                            LastName = "Last 4"
+                            FirstName = "Maureen",
+                            LastName = "Corrigan"
                         },
                         new
                         {
                             Id = 5,
-                            FirstName = "Reviewer 5",
-                            LastName = "Last 5"
+                            FirstName = "Dwight",
+                            LastName = "Garner"
                         });
                 });
 

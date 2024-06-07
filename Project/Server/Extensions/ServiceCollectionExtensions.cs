@@ -7,7 +7,7 @@ namespace Server.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDataContext(this IServiceCollection services, IConfiguration configuration)
     {
         return services.AddDbContext<DataContext>(options =>
         {
@@ -18,7 +18,5 @@ public static class ServiceCollectionExtensions
     public static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<ICountryRepository, CountryRepository>();
-        services.AddScoped<ICategoryRepository, CategoryRepository>();
-        services.AddScoped<IAuthorRepository, AuthorRepository>();
     }
 }

@@ -3,7 +3,7 @@ using Server.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddCustomDbContext(builder.Configuration);
+builder.Services.AddDataContext(builder.Configuration);
 builder.Services.AddRepositories();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

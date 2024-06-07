@@ -7,13 +7,13 @@
 namespace Server.Migrations
 {
     /// <inheritdoc />
-    public partial class AddAllModels : Migration
+    public partial class AddAllmodel : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Books",
+                name: "Book",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -24,7 +24,7 @@ namespace Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Books", x => x.Id);
+                    table.PrimaryKey("PK_Book", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,9 +78,9 @@ namespace Server.Migrations
                 {
                     table.PrimaryKey("PK_BookCategories", x => new { x.BookId, x.CategoryId });
                     table.ForeignKey(
-                        name: "FK_BookCategories_Books_BookId",
+                        name: "FK_BookCategories_Book_BookId",
                         column: x => x.BookId,
-                        principalTable: "Books",
+                        principalTable: "Book",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -128,9 +128,9 @@ namespace Server.Migrations
                 {
                     table.PrimaryKey("PK_Reviews", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reviews_Books_BookId",
+                        name: "FK_Reviews_Book_BookId",
                         column: x => x.BookId,
-                        principalTable: "Books",
+                        principalTable: "Book",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -158,23 +158,23 @@ namespace Server.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookAuthors_Books_BookId",
+                        name: "FK_BookAuthors_Book_BookId",
                         column: x => x.BookId,
-                        principalTable: "Books",
+                        principalTable: "Book",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Books",
+                table: "Book",
                 columns: new[] { "Id", "Isbn", "PublishedAt", "Title" },
                 values: new object[,]
                 {
-                    { 1, "1234567890", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(5955), new TimeSpan(0, 6, 0, 0, 0)), "Book 1" },
-                    { 2, "2345678901", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6045), new TimeSpan(0, 6, 0, 0, 0)), "Book 2" },
-                    { 3, "3456789012", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6048), new TimeSpan(0, 6, 0, 0, 0)), "Book 3" },
-                    { 4, "4567890123", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6051), new TimeSpan(0, 6, 0, 0, 0)), "Book 4" },
-                    { 5, "5678901234", new DateTimeOffset(new DateTime(2024, 6, 6, 23, 24, 32, 274, DateTimeKind.Unspecified).AddTicks(6054), new TimeSpan(0, 6, 0, 0, 0)), "Book 5" }
+                    { 1, "9781501142970", new DateTimeOffset(new DateTime(1986, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)), "It" },
+                    { 2, "9780747532743", new DateTimeOffset(new DateTime(1997, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)), "Harry Potter and the Philosopher's Stone" },
+                    { 3, "9780385490818", new DateTimeOffset(new DateTime(1985, 2, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)), "The Handmaid's Tale" },
+                    { 4, "9780330412388", new DateTimeOffset(new DateTime(1991, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)), "Cloudstreet" },
+                    { 5, "9780006550686", new DateTimeOffset(new DateTime(1997, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 6, 0, 0, 0)), "The God of Small Things" }
                 });
 
             migrationBuilder.InsertData(
@@ -182,11 +182,11 @@ namespace Server.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Category 1" },
-                    { 2, "Category 2" },
-                    { 3, "Category 3" },
-                    { 4, "Category 4" },
-                    { 5, "Category 5" }
+                    { 1, "Fiction" },
+                    { 2, "Non-Fiction" },
+                    { 3, "Biography" },
+                    { 4, "Children's" },
+                    { 5, "Mystery" }
                 });
 
             migrationBuilder.InsertData(
@@ -194,11 +194,11 @@ namespace Server.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Country 1" },
-                    { 2, "Country 2" },
-                    { 3, "Country 3" },
-                    { 4, "Country 4" },
-                    { 5, "Country 5" }
+                    { 1, "United States" },
+                    { 2, "United Kingdom" },
+                    { 3, "Canada" },
+                    { 4, "Australia" },
+                    { 5, "India" }
                 });
 
             migrationBuilder.InsertData(
@@ -206,11 +206,11 @@ namespace Server.Migrations
                 columns: new[] { "Id", "FirstName", "LastName" },
                 values: new object[,]
                 {
-                    { 1, "Reviewer 1", "Last 1" },
-                    { 2, "Reviewer 2", "Last 2" },
-                    { 3, "Reviewer 3", "Last 3" },
-                    { 4, "Reviewer 4", "Last 4" },
-                    { 5, "Reviewer 5", "Last 5" }
+                    { 1, "James", "Wood" },
+                    { 2, "Michiko", "Kakutani" },
+                    { 3, "Ron", "Charles" },
+                    { 4, "Maureen", "Corrigan" },
+                    { 5, "Dwight", "Garner" }
                 });
 
             migrationBuilder.InsertData(
@@ -218,11 +218,11 @@ namespace Server.Migrations
                 columns: new[] { "Id", "CountryId", "FirstName", "LastName" },
                 values: new object[,]
                 {
-                    { 1, 1, "John", "Doe" },
-                    { 2, 1, "Jane", "Doe" },
-                    { 3, 2, "Alice", "Smith" },
-                    { 4, 2, "Bob", "Johnson" },
-                    { 5, 3, "Charlie", "Brown" }
+                    { 1, 1, "Stephen", "King" },
+                    { 2, 2, "J.K.", "Rowling" },
+                    { 3, 3, "Margaret", "Atwood" },
+                    { 4, 4, "Tim", "Winton" },
+                    { 5, 5, "Arundhati", "Roy" }
                 });
 
             migrationBuilder.InsertData(
@@ -230,11 +230,11 @@ namespace Server.Migrations
                 columns: new[] { "BookId", "CategoryId" },
                 values: new object[,]
                 {
-                    { 1, 1 },
-                    { 2, 2 },
-                    { 3, 3 },
-                    { 4, 4 },
-                    { 5, 5 }
+                    { 1, 5 },
+                    { 2, 4 },
+                    { 3, 1 },
+                    { 4, 1 },
+                    { 5, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -242,11 +242,11 @@ namespace Server.Migrations
                 columns: new[] { "Id", "BookId", "Headline", "Rating", "ReviewText", "ReviewerId" },
                 values: new object[,]
                 {
-                    { 1, 1, "Review 1", 5, "This is review 1", 1 },
-                    { 2, 2, "Review 2", 4, "This is review 2", 2 },
-                    { 3, 3, "Review 3", 3, "This is review 3", 3 },
-                    { 4, 4, "Review 4", 2, "This is review 4", 4 },
-                    { 5, 5, "Review 5", 1, "This is review 5", 5 }
+                    { 1, 1, "Terrifying Read", 5, "Stephen King's 'It' is a terrifying journey into the depths of fear.", 1 },
+                    { 2, 2, "Magical Adventure", 5, "Rowling's debut novel is a magical adventure for all ages.", 2 },
+                    { 3, 3, "Dystopian Masterpiece", 5, "Atwood's 'The Handmaid's Tale' is a chilling vision of a dystopian future.", 3 },
+                    { 4, 4, "Australian Classic", 4, "Winton's 'Cloudstreet' is a sprawling epic of Australian life.", 4 },
+                    { 5, 5, "Beautiful and Heartbreaking", 4, "Roy's debut novel is a beautiful and heartbreaking tale of love and loss.", 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -306,7 +306,7 @@ namespace Server.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "Book");
 
             migrationBuilder.DropTable(
                 name: "Reviewers");

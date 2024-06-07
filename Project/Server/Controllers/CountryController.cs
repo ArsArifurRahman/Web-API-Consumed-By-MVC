@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Server.DTOs.Country;
-using Server.Models;
 using Server.Repository.Contracts;
 
 namespace Server.Controllers;
@@ -18,18 +17,7 @@ public class CountryController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<CountryListDto>>> GetCountries()
-    {
-        var countries = await _countryRepository.GetCountriesAsync();
-
-        var countryListDto = countries.Select(country => new CountryListDto
-        {
-            Name = country.Name ?? string.Empty
-        });
-
-        return Ok(countryListDto);
-    }
-
+    public async Task<ActionResult<IEnumerable<CountryListDto>>> GetCountries() => Ok(await _countryRepository.GetCountriesAsync());
 
     [HttpGet("{countryId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -37,33 +25,15 @@ public class CountryController : ControllerBase
     public async Task<ActionResult<CountryReadDto>> GetCountry(int countryId)
     {
         var country = await _countryRepository.GetCountryAsync(countryId);
-
-        if (country == null)
-        {
-            return NotFound("Country not found.");
-        }
-
-        var countryReadDto = new CountryReadDto
-        {
-            Id = country.Id,
-            Name = country.Name ?? string.Empty
-        };
-
-        return Ok(countryReadDto);
+        return country != null ? Ok(country) : NotFound("Country not found.");
     }
-
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<ActionResult<Country>> PostCountry(CountryCreateDto countryCreateDto)
+    public async Task<ActionResult<CountryCreateDto>> PostCountry(CountryCreateDto countryCreateDto)
     {
-        var country = new Country
-        {
-            Name = countryCreateDto.Name
-        };
-
-        var createdCountry = await _countryRepository.AddCountryAsync(country);
-        return CreatedAtAction(nameof(GetCountry), new { countryId = createdCountry.Id }, createdCountry);
+        var createdCountry = await _countryRepository.AddCountryAsync(countryCreateDto);
+        return CreatedAtAction(nameof(GetCountry), new { countryId = createdCountry.Name }, createdCountry);
     }
 
     [HttpPut("{countryId}")]
@@ -72,21 +42,8 @@ public class CountryController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> PutCountry(int countryId, CountryUpdateDto countryUpdateDto)
     {
-        if (countryId != countryUpdateDto.Id)
-        {
-            return BadRequest("Country ID mismatch.");
-        }
-
-        var country = await _countryRepository.GetCountryAsync(countryId);
-
-        if (country == null)
-        {
-            return NotFound("Country not found.");
-        }
-
-        country.Name = countryUpdateDto.Name ?? country.Name;
-        await _countryRepository.EditCountryAsync(countryId, country);
-
+        if (countryId != countryUpdateDto.Id) return BadRequest("Country ID mismatch.");
+        await _countryRepository.EditCountryAsync(countryId, countryUpdateDto);
         return NoContent();
     }
 
@@ -98,33 +55,11 @@ public class CountryController : ControllerBase
         try
         {
             await _countryRepository.DeleteCountryAsync(countryId);
+            return NoContent();
         }
         catch (KeyNotFoundException)
         {
             return NotFound();
-        }
-
-        return NoContent();
-    }
-
-    [HttpGet("authors/{authorId}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CountryReadDto>> GetCountryOfAnAuthor(int authorId)
-    {
-        try
-        {
-            var country = await _countryRepository.GetCountryOfAnAuthorAsync(authorId);
-            var countryReadDto = new CountryReadDto
-            {
-                Id = country.Id,
-                Name = country.Name ?? string.Empty,
-            };
-            return Ok(countryReadDto);
-        }
-        catch (ArgumentException ex)
-        {
-            return NotFound(ex.Message);
         }
     }
 }

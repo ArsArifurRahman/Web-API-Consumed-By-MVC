@@ -17,7 +17,7 @@ public class Book
     [StringLength(32, ErrorMessage = "Title cannot be longer than 32 characters.")]
     public string? Title { get; set; }
 
-    public DateTimeOffset PublishedAt { get; set; }
+    public DateTimeOffset PublishedAt { get; set; } = DateTimeOffset.UtcNow;
     public virtual ICollection<Review>? Reviews { get; set; }
     public virtual ICollection<BookAuthor>? BookAuthors { get; set; }
     public virtual ICollection<BookCategory>? BookCategories { get; set; }

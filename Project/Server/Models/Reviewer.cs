@@ -16,6 +16,5 @@ public class Reviewer
     [Required(ErrorMessage = "Last name is required.")]
     [StringLength(32, ErrorMessage = "Last name cannot be longer than 32 characters.")]
     public string? LastName { get; set; }
-
     public virtual ICollection<Review>? Reviews { get; set; }
 }
