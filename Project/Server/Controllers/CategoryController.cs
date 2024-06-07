@@ -30,7 +30,7 @@ public class CategoryController : ControllerBase
         return Ok(categoryListDto);
     }
 
-    [HttpGet("{categoryId}", Name = nameof(GetCategory))]
+    [HttpGet("{categoryId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<CategoryReadDto>> GetCategory(int categoryId)
@@ -61,7 +61,7 @@ public class CategoryController : ControllerBase
         };
 
         var createdCategory = await _categoryRepository.AddCategoryAsync(category);
-        return CreatedAtAction(nameof(GetCategory), new { id = createdCategory.Id }, createdCategory);
+        return CreatedAtAction(nameof(GetCategory), new { categoryId = createdCategory.Id }, createdCategory);
     }
 
     [HttpPut("{categoryId}")]

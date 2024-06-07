@@ -19,5 +19,6 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IAuthorRepository, AuthorRepository>();
     }
 }

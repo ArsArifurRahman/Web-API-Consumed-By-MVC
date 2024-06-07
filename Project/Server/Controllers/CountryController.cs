@@ -31,7 +31,7 @@ public class CountryController : ControllerBase
     }
 
 
-    [HttpGet("{countryId}", Name = nameof(GetCountry))]
+    [HttpGet("{countryId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<CountryReadDto>> GetCountry(int countryId)
@@ -63,7 +63,7 @@ public class CountryController : ControllerBase
         };
 
         var createdCountry = await _countryRepository.AddCountryAsync(country);
-        return CreatedAtAction(nameof(GetCountry), new { id = createdCountry.Id }, createdCountry);
+        return CreatedAtAction(nameof(GetCountry), new { countryId = createdCountry.Id }, createdCountry);
     }
 
     [HttpPut("{countryId}")]
