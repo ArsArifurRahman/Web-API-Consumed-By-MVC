@@ -1,12 +1,122 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|solutionrelative:models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\models\\reviewer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|solutionrelative:models\\reviewer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|solutionrelative:models\\country.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|solutionrelative:models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|solutionrelative:models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53DA39EE-4FA0-4984-82E4-6E471F4706AD}|Server.csproj|solutionrelative:models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Reviewer.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Reviewer.cs",
+              "RelativeDocumentMoniker": "Models\\Reviewer.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Reviewer.cs",
+              "RelativeToolTip": "Models\\Reviewer.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T08:55:54.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Review.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Review.cs",
+              "RelativeDocumentMoniker": "Models\\Review.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Review.cs",
+              "RelativeToolTip": "Models\\Review.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAADwvxcAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T08:55:29.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Country.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Country.cs",
+              "RelativeDocumentMoniker": "Models\\Country.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Country.cs",
+              "RelativeToolTip": "Models\\Country.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAA3wA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T08:55:26.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "Models\\Category.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Category.cs",
+              "RelativeToolTip": "Models\\Category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T08:55:23.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Author.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Author.cs",
+              "RelativeDocumentMoniker": "Models\\Author.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Author.cs",
+              "RelativeToolTip": "Models\\Author.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAwwBQAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T08:55:13.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Book.cs",
+              "RelativeDocumentMoniker": "Models\\Book.cs",
+              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Models\\Book.cs",
+              "RelativeToolTip": "Models\\Book.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAA3wAsAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T08:55:03.356Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

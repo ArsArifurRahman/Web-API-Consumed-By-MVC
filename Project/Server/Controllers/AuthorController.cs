@@ -60,7 +60,8 @@ public class AuthorController : ControllerBase
         var author = new Author
         {
             FirstName = authorCreateDto.FirstName ?? string.Empty,
-            LastName = authorCreateDto.LastName ?? string.Empty
+            LastName = authorCreateDto.LastName ?? string.Empty,
+            CountryId = authorCreateDto.CountryId
         };
 
         var createdAuthor = await _authorRepository.AddAuthorAsync(author);
