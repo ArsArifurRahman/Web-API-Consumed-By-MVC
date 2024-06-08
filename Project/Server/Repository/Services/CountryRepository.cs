@@ -47,13 +47,7 @@ public class CountryRepository : ICountryRepository
         try
         {
             // Retrieve the country from the database
-            var country = await _context.Countries.FirstOrDefaultAsync(x => x.Id == id);
-
-            // Check if the country exists
-            if (country == null)
-            {
-                throw new KeyNotFoundException("The country with the given id was not found.");
-            }
+            var country = await _context.Countries.FirstOrDefaultAsync(x => x.Id == id) ?? throw new InvalidOperationException("Failed to retrieve country.");
 
             // Convert the country to a CountryReadDto object
             var countryReadDto = new CountryReadDto
@@ -64,11 +58,15 @@ public class CountryRepository : ICountryRepository
 
             return countryReadDto;
         }
-        catch (Exception ex)
+        catch (InvalidOperationException ex)
         {
-            throw new Exception("Failed to retrieve country.", ex);
+            // Log the exception message and rethrow the exception
+            Console.WriteLine(ex.Message);
+            throw;
         }
     }
+
+
 
     public async Task<CountryCreateDto> AddCountryAsync(CountryCreateDto countryCreateDto)
     {
