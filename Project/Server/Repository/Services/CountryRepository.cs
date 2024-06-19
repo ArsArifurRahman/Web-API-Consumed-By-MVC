@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Server.Data;
+using Server.DTOs.Author;
 using Server.DTOs.Country;
 using Server.Models;
 using Server.Repository.Contracts;
@@ -50,7 +51,12 @@ public class CountryRepository : ICountryRepository
     {
         if (countryCreateDto == null)
         {
-            throw new ArgumentNullException(nameof(countryCreateDto));
+            throw new ArgumentNullException(nameof(countryCreateDto), "CountryCreateDto cannot be null.");
+        }
+
+        if (await IsDuplicateCountryAsync(0, countryCreateDto.Name))
+        {
+            throw new InvalidOperationException("Country name already exists.");
         }
 
         var country = new Country
@@ -72,7 +78,17 @@ public class CountryRepository : ICountryRepository
     {
         if (countryUpdateDto == null)
         {
-            throw new ArgumentNullException(nameof(countryUpdateDto));
+            throw new ArgumentNullException(nameof(countryUpdateDto), "CountryUpdateDto cannot be null.");
+        }
+
+        if (!await CountryExistsAsync(id))
+        {
+            throw new KeyNotFoundException("Country not found.");
+        }
+
+        if (await IsDuplicateCountryAsync(id, countryUpdateDto.Name))
+        {
+            throw new InvalidOperationException("Country name already exists.");
         }
 
         var country = await _context.Countries.FindAsync(id);
@@ -92,6 +108,11 @@ public class CountryRepository : ICountryRepository
 
     public async Task<bool> DeleteCountryAsync(int id)
     {
+        if (!await CountryExistsAsync(id))
+        {
+            throw new KeyNotFoundException("Country not found.");
+        }
+
         var country = await _context.Countries.FindAsync(id);
 
         if (country == null)
@@ -103,5 +124,60 @@ public class CountryRepository : ICountryRepository
         await _context.SaveChangesAsync();
 
         return true;
+    }
+
+    public async Task<CountryReadDto> GetCountryByAuthorAsync(int authorId)
+    {
+        var country = await _context.Authors
+            .Where(a => a.Id == authorId)
+            .Select(a => new CountryReadDto
+            {
+                Id = a.Country != null ? a.Country.Id : 0,
+                Name = a.Country != null ? a.Country.Name : string.Empty
+            })
+            .FirstOrDefaultAsync();
+
+        if (country == null || country.Id == 0)
+        {
+            throw new KeyNotFoundException($"Country not found for author with ID {authorId}.");
+        }
+
+        return country;
+    }
+
+    public async Task<IEnumerable<AuthorReadDto>> GetAuthorsByCountryAsync(int countryId)
+    {
+        if (!await CountryExistsAsync(countryId))
+        {
+            throw new KeyNotFoundException("Country not found.");
+        }
+
+        var authors = await _context.Authors
+            .Where(a => a.CountryId == countryId)
+            .ToListAsync();
+
+        if (authors == null || !authors.Any())
+        {
+            throw new KeyNotFoundException("No authors found for the specified country.");
+        }
+
+        return authors.Select(author => new AuthorReadDto
+        {
+            Id = author.Id,
+            FirstName = author.FirstName,
+            LastName = author.LastName,
+            CountryId = author.CountryId
+        });
+    }
+
+    public async Task<bool> CountryExistsAsync(int countryId)
+    {
+        return await _context.Countries.AnyAsync(c => c.Id == countryId);
+    }
+
+    public async Task<bool> IsDuplicateCountryAsync(int countryId, string countryName)
+    {
+        return await _context.Countries
+            .AnyAsync(c => c.Name.Trim().ToUpper() == countryName.Trim().ToUpper() && c.Id != countryId);
     }
 }
