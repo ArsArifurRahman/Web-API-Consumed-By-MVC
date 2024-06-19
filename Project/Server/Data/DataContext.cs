@@ -9,14 +9,14 @@ public class DataContext : DbContext
     {
     }
 
-    public virtual DbSet<Author> Authors { get; set; }
-    public virtual DbSet<Book> Book { get; set; }
-    public virtual DbSet<Category> Categories { get; set; }
-    public virtual DbSet<Country> Countries { get; set; }
-    public virtual DbSet<Review> Reviews { get; set; }
-    public virtual DbSet<Reviewer> Reviewers { get; set; }
-    public virtual DbSet<BookAuthor> BookAuthors { get; set; }
-    public virtual DbSet<BookCategory> BookCategories { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Book> Books { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Country> Countries { get; set; }
+    public DbSet<Review> Reviews { get; set; }
+    public DbSet<Reviewer> Reviewers { get; set; }
+    public DbSet<BookAuthor> BookAuthors { get; set; }
+    public DbSet<BookCategory> BookCategories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -24,13 +24,15 @@ public class DataContext : DbContext
         modelBuilder.Entity<Author>()
             .HasOne(a => a.Country)
             .WithMany(c => c.Authors)
-            .HasForeignKey(a => a.CountryId);
+            .HasForeignKey(a => a.CountryId)
+            .IsRequired();
 
         // Configure Book & Review relationship
         modelBuilder.Entity<Book>()
             .HasMany(b => b.Reviews)
             .WithOne(r => r.Book)
-            .HasForeignKey(r => r.BookId);
+            .HasForeignKey(r => r.BookId)
+            .IsRequired();
 
         // Configure Book & BookAuthor relationship
         modelBuilder.Entity<BookAuthor>()
@@ -39,12 +41,14 @@ public class DataContext : DbContext
         modelBuilder.Entity<BookAuthor>()
             .HasOne(ba => ba.Book)
             .WithMany(b => b.BookAuthors)
-            .HasForeignKey(ba => ba.BookId);
+            .HasForeignKey(ba => ba.BookId)
+            .IsRequired();
 
         modelBuilder.Entity<BookAuthor>()
             .HasOne(ba => ba.Author)
             .WithMany(a => a.BookAuthors)
-            .HasForeignKey(ba => ba.AuthorId);
+            .HasForeignKey(ba => ba.AuthorId)
+            .IsRequired();
 
         // Configure Book & BookCategory relationship
         modelBuilder.Entity<BookCategory>()
@@ -53,27 +57,36 @@ public class DataContext : DbContext
         modelBuilder.Entity<BookCategory>()
             .HasOne(bc => bc.Book)
             .WithMany(b => b.BookCategories)
-            .HasForeignKey(bc => bc.BookId);
+            .HasForeignKey(bc => bc.BookId)
+            .IsRequired();
 
         modelBuilder.Entity<BookCategory>()
             .HasOne(bc => bc.Category)
             .WithMany(c => c.BookCategories)
-            .HasForeignKey(bc => bc.CategoryId);
+            .HasForeignKey(bc => bc.CategoryId)
+            .IsRequired();
 
         // Configure Review & Reviewer relationship
         modelBuilder.Entity<Review>()
             .HasOne(r => r.Reviewer)
             .WithMany(rev => rev.Reviews)
-            .HasForeignKey(r => r.ReviewerId);
+            .HasForeignKey(r => r.ReviewerId)
+            .IsRequired();
 
+        // Seed data
+        SeedData(modelBuilder);
+    }
+
+    private void SeedData(ModelBuilder modelBuilder)
+    {
         // Seed data for Country
         modelBuilder.Entity<Country>().HasData(
-                new Country { Id = 1, Name = "United States" },
-                new Country { Id = 2, Name = "United Kingdom" },
-                new Country { Id = 3, Name = "Canada" },
-                new Country { Id = 4, Name = "Australia" },
-                new Country { Id = 5, Name = "India" }
-            );
+            new Country { Id = 1, Name = "United States" },
+            new Country { Id = 2, Name = "United Kingdom" },
+            new Country { Id = 3, Name = "Canada" },
+            new Country { Id = 4, Name = "Australia" },
+            new Country { Id = 5, Name = "India" }
+        );
 
         // Seed data for Author
         modelBuilder.Entity<Author>().HasData(
@@ -110,7 +123,6 @@ public class DataContext : DbContext
             new Reviewer { Id = 4, FirstName = "Maureen", LastName = "Corrigan" },
             new Reviewer { Id = 5, FirstName = "Dwight", LastName = "Garner" }
         );
-
 
         // Seed data for Review
         modelBuilder.Entity<Review>().HasData(

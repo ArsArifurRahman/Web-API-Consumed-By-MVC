@@ -11,14 +11,20 @@ public class Author
 
     [Required(ErrorMessage = "First name is required.")]
     [StringLength(32, ErrorMessage = "First name cannot be longer than 32 characters.")]
-    public string? FirstName { get; set; }
+    public string FirstName { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Last name is required.")]
     [StringLength(32, ErrorMessage = "Last name cannot be longer than 32 characters.")]
-    public string? LastName { get; set; }
+    public string LastName { get; set; } = string.Empty;
 
     [ForeignKey(nameof(Country))]
     public int CountryId { get; set; }
     public virtual Country? Country { get; set; }
-    public virtual ICollection<BookAuthor>? BookAuthors { get; set; }
+
+    public virtual ICollection<BookAuthor> BookAuthors { get; set; }
+
+    public Author()
+    {
+        BookAuthors = new List<BookAuthor>();
+    }
 }

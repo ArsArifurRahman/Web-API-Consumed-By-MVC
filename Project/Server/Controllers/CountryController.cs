@@ -17,7 +17,11 @@ public class CountryController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<CountryListDto>>> GetCountries() => Ok(await _countryRepository.GetCountriesAsync());
+    public async Task<ActionResult<IEnumerable<CountryListDto>>> GetCountries()
+    {
+        var countries = await _countryRepository.GetCountriesAsync();
+        return Ok(countries);
+    }
 
     [HttpGet("{countryId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -25,15 +29,25 @@ public class CountryController : ControllerBase
     public async Task<ActionResult<CountryReadDto>> GetCountry(int countryId)
     {
         var country = await _countryRepository.GetCountryAsync(countryId);
-        return country != null ? Ok(country) : NotFound("Country not found.");
+        if (country == null)
+        {
+            return NotFound();
+        }
+        return Ok(country);
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<CountryCreateDto>> PostCountry(CountryCreateDto countryCreateDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         var createdCountry = await _countryRepository.AddCountryAsync(countryCreateDto);
-        return CreatedAtAction(nameof(GetCountry), new { countryId = createdCountry.Name }, createdCountry);
+        return CreatedAtAction(nameof(GetCountry), new { countryId = createdCountry.Id }, createdCountry);
     }
 
     [HttpPut("{countryId}")]
@@ -42,7 +56,11 @@ public class CountryController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> PutCountry(int countryId, CountryUpdateDto countryUpdateDto)
     {
-        if (countryId != countryUpdateDto.Id) return BadRequest("Country ID mismatch.");
+        if (countryId != countryUpdateDto.Id)
+        {
+            return BadRequest("Country ID mismatch.");
+        }
+
         await _countryRepository.EditCountryAsync(countryId, countryUpdateDto);
         return NoContent();
     }

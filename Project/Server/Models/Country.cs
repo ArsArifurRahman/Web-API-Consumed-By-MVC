@@ -11,6 +11,12 @@ public class Country
 
     [Required(ErrorMessage = "Name is required.")]
     [StringLength(32, ErrorMessage = "Name cannot be longer than 32 characters.")]
-    public string? Name { get; set; }
-    public virtual ICollection<Author>? Authors { get; set; }
+    public string Name { get; set; } = string.Empty;
+
+    public virtual ICollection<Author> Authors { get; set; }
+
+    public Country()
+    {
+        Authors = new List<Author>();
+    }
 }

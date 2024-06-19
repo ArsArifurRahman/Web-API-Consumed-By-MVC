@@ -6,7 +6,7 @@ public interface ICountryRepository
 {
     Task<IEnumerable<CountryListDto>> GetCountriesAsync();
     Task<CountryReadDto> GetCountryAsync(int id);
-    Task<CountryCreateDto> AddCountryAsync(CountryCreateDto countryCreateDto);
-    Task EditCountryAsync(int id, CountryUpdateDto countryUpdateDto);
-    Task DeleteCountryAsync(int id);
+    Task<CountryReadDto> AddCountryAsync(CountryCreateDto countryCreateDto);
+    Task<bool> EditCountryAsync(int id, CountryUpdateDto countryUpdateDto);
+    Task<bool> DeleteCountryAsync(int id);
 }

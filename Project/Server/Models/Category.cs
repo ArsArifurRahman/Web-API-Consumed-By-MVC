@@ -11,6 +11,12 @@ public class Category
 
     [Required(ErrorMessage = "Name is required.")]
     [StringLength(32, ErrorMessage = "Name cannot be longer than 32 characters.")]
-    public string? Name { get; set; }
-    public virtual ICollection<BookCategory>? BookCategories { get; set; }
+    public string Name { get; set; } = string.Empty;
+
+    public virtual ICollection<BookCategory> BookCategories { get; set; }
+
+    public Category()
+    {
+        BookCategories = new List<BookCategory>();
+    }
 }

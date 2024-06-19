@@ -11,10 +11,16 @@ public class Reviewer
 
     [Required(ErrorMessage = "First name is required.")]
     [StringLength(32, ErrorMessage = "First name cannot be longer than 32 characters.")]
-    public string? FirstName { get; set; }
+    public string FirstName { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Last name is required.")]
     [StringLength(32, ErrorMessage = "Last name cannot be longer than 32 characters.")]
-    public string? LastName { get; set; }
-    public virtual ICollection<Review>? Reviews { get; set; }
+    public string LastName { get; set; } = string.Empty;
+
+    public virtual ICollection<Review> Reviews { get; set; }
+
+    public Reviewer()
+    {
+        Reviews = new List<Review>();
+    }
 }
