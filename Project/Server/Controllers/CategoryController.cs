@@ -9,11 +9,11 @@ namespace Server.Controllers;
 [ApiController]
 public class CategoryController : ControllerBase
 {
-    private readonly IServerCategoryRepository _categoryRepository;
+    private readonly IServerCategoryRepository _repository;
 
-    public CategoryController(IServerCategoryRepository categoryRepository)
+    public CategoryController(IServerCategoryRepository repository)
     {
-        _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     [HttpGet]
@@ -23,7 +23,7 @@ public class CategoryController : ControllerBase
     {
         try
         {
-            return Ok(await _categoryRepository.GetCategoriesAsync());
+            return Ok(await _repository.GetCategoriesAsync());
         }
         catch (Exception ex)
         {
@@ -39,7 +39,7 @@ public class CategoryController : ControllerBase
     {
         try
         {
-            return Ok(await _categoryRepository.GetCategoryAsync(categoryId));
+            return Ok(await _repository.GetCategoryAsync(categoryId));
         }
         catch (KeyNotFoundException ex)
         {
@@ -63,7 +63,7 @@ public class CategoryController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var createdCategory = await _categoryRepository.AddCategoryAsync(categoryCreateDto);
+            var createdCategory = await _repository.AddCategoryAsync(categoryCreateDto);
             return CreatedAtAction(nameof(GetCategory), new { categoryId = createdCategory.Id }, createdCategory);
         }
         catch (InvalidOperationException ex)
@@ -89,7 +89,7 @@ public class CategoryController : ControllerBase
                 return BadRequest("Category ID mismatch.");
             }
 
-            await _categoryRepository.EditCategoryAsync(categoryId, categoryUpdateDto);
+            await _repository.EditCategoryAsync(categoryId, categoryUpdateDto);
             return NoContent();
         }
         catch (KeyNotFoundException ex)
@@ -114,7 +114,7 @@ public class CategoryController : ControllerBase
     {
         try
         {
-            await _categoryRepository.DeleteCategoryAsync(categoryId);
+            await _repository.DeleteCategoryAsync(categoryId);
             return NoContent();
         }
         catch (KeyNotFoundException ex)
@@ -135,7 +135,7 @@ public class CategoryController : ControllerBase
     {
         try
         {
-            return Ok(await _categoryRepository.GetBooksFromACategoryAsync(categoryId));
+            return Ok(await _repository.GetBooksFromACategoryAsync(categoryId));
         }
         catch (KeyNotFoundException ex)
         {
@@ -155,7 +155,7 @@ public class CategoryController : ControllerBase
     {
         try
         {
-            return Ok(await _categoryRepository.GetCategoriesOfABookAsync(bookId));
+            return Ok(await _repository.GetCategoriesOfABookAsync(bookId));
         }
         catch (KeyNotFoundException ex)
         {

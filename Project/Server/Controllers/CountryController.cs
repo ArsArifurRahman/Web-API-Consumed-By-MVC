@@ -9,11 +9,11 @@ namespace Server.Controllers;
 [ApiController]
 public class CountryController : ControllerBase
 {
-    private readonly IServerCountryRepository _countryRepository;
+    private readonly IServerCountryRepository _repository;
 
-    public CountryController(IServerCountryRepository countryRepository)
+    public CountryController(IServerCountryRepository repository)
     {
-        _countryRepository = countryRepository ?? throw new ArgumentNullException(nameof(countryRepository));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     [HttpGet]
@@ -23,7 +23,7 @@ public class CountryController : ControllerBase
     {
         try
         {
-            return Ok(await _countryRepository.GetCountriesAsync());
+            return Ok(await _repository.GetCountriesAsync());
         }
         catch (Exception ex)
         {
@@ -39,7 +39,7 @@ public class CountryController : ControllerBase
     {
         try
         {
-            return Ok(await _countryRepository.GetCountryAsync(countryId));
+            return Ok(await _repository.GetCountryAsync(countryId));
         }
         catch (KeyNotFoundException ex)
         {
@@ -63,7 +63,7 @@ public class CountryController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            var createdCountry = await _countryRepository.AddCountryAsync(countryCreateDto);
+            var createdCountry = await _repository.AddCountryAsync(countryCreateDto);
             return CreatedAtAction(nameof(GetCountry), new { countryId = createdCountry.Id }, createdCountry);
         }
         catch (InvalidOperationException ex)
@@ -89,7 +89,7 @@ public class CountryController : ControllerBase
                 return BadRequest("Country ID mismatch.");
             }
 
-            await _countryRepository.EditCountryAsync(countryId, countryUpdateDto);
+            await _repository.EditCountryAsync(countryId, countryUpdateDto);
             return NoContent();
         }
         catch (KeyNotFoundException ex)
@@ -114,7 +114,7 @@ public class CountryController : ControllerBase
     {
         try
         {
-            await _countryRepository.DeleteCountryAsync(countryId);
+            await _repository.DeleteCountryAsync(countryId);
             return NoContent();
         }
         catch (KeyNotFoundException ex)
@@ -135,7 +135,7 @@ public class CountryController : ControllerBase
     {
         try
         {
-            return Ok(await _countryRepository.GetCountryOfAnAuthorAsync(authorId));
+            return Ok(await _repository.GetCountryOfAnAuthorAsync(authorId));
         }
         catch (KeyNotFoundException ex)
         {
@@ -155,7 +155,7 @@ public class CountryController : ControllerBase
     {
         try
         {
-            return Ok(await _countryRepository.GetAuthorsFromACountryAsync(countryId));
+            return Ok(await _repository.GetAuthorsFromACountryAsync(countryId));
         }
         catch (KeyNotFoundException ex)
         {
