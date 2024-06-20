@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Server.DTOs.Author;
 using Server.DTOs.Country;
+using Server.DTOs.Relations;
 using Server.Repository.Contracts;
 
 namespace Server.Controllers;
@@ -131,11 +131,11 @@ public class CountryController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CountryReadDto>> GetCountryByAuthor(int authorId)
+    public async Task<ActionResult<CountryOfAnAuthorDto>> GetCountryOfAnAuthor(int authorId)
     {
         try
         {
-            return Ok(await _countryRepository.GetCountryByAuthorAsync(authorId));
+            return Ok(await _countryRepository.GetCountryOfAnAuthorAsync(authorId));
         }
         catch (KeyNotFoundException ex)
         {
@@ -151,11 +151,11 @@ public class CountryController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<IEnumerable<AuthorReadDto>>> GetAuthorsByCountry(int countryId)
+    public async Task<ActionResult<IEnumerable<AuthorsfromACountryDto>>> GetAuthorsFromACountry(int countryId)
     {
         try
         {
-            return Ok(await _countryRepository.GetAuthorsByCountryAsync(countryId));
+            return Ok(await _countryRepository.GetAuthorsFromACountryAsync(countryId));
         }
         catch (KeyNotFoundException ex)
         {

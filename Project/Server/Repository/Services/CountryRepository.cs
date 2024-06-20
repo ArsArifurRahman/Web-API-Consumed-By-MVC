@@ -2,6 +2,7 @@
 using Server.Data;
 using Server.DTOs.Author;
 using Server.DTOs.Country;
+using Server.DTOs.Relations;
 using Server.Models;
 using Server.Repository.Contracts;
 
@@ -126,48 +127,63 @@ public class CountryRepository : ICountryRepository
         return true;
     }
 
-    public async Task<CountryReadDto> GetCountryByAuthorAsync(int authorId)
+    public async Task<CountryOfAnAuthorDto> GetCountryOfAnAuthorAsync(int authorId)
     {
-        var country = await _context.Authors
-            .Where(a => a.Id == authorId)
-            .Select(a => new CountryReadDto
-            {
-                Id = a.Country != null ? a.Country.Id : 0,
-                Name = a.Country != null ? a.Country.Name : string.Empty
-            })
-            .FirstOrDefaultAsync();
+        var author = await _context.Authors
+            .Include(a => a.Country)
+            .FirstOrDefaultAsync(a => a.Id == authorId);
 
-        if (country == null || country.Id == 0)
+        if (author == null)
         {
-            throw new KeyNotFoundException($"Country not found for author with ID {authorId}.");
+            throw new KeyNotFoundException($"Author with Id {authorId} not found.");
         }
 
-        return country;
-    }
-
-    public async Task<IEnumerable<AuthorReadDto>> GetAuthorsByCountryAsync(int countryId)
-    {
-        if (!await CountryExistsAsync(countryId))
+        if (author.Country == null)
         {
-            throw new KeyNotFoundException("Country not found.");
+            throw new InvalidOperationException($"Author with Id {authorId} does not have an associated country.");
         }
 
-        var authors = await _context.Authors
-            .Where(a => a.CountryId == countryId)
-            .ToListAsync();
-
-        if (authors == null || !authors.Any())
-        {
-            throw new KeyNotFoundException("No authors found for the specified country.");
-        }
-
-        return authors.Select(author => new AuthorReadDto
+        var countryOfAnAuthorDto = new CountryOfAnAuthorDto
         {
             Id = author.Id,
             FirstName = author.FirstName,
             LastName = author.LastName,
-            CountryId = author.CountryId
-        });
+            Country = new CountryReadDto
+            {
+                Id = author.Country.Id,
+                Name = author.Country.Name
+            }
+        };
+
+        return countryOfAnAuthorDto;
+    }
+
+
+    public async Task<IEnumerable<AuthorsfromACountryDto>> GetAuthorsFromACountryAsync(int countryId)
+    {
+        var country = await _context.Countries
+            .Include(c => c.Authors)
+            .FirstOrDefaultAsync(c => c.Id == countryId);
+
+        if (country == null)
+        {
+            throw new KeyNotFoundException($"Country with Id {countryId} not found.");
+        }
+
+        var authorsFromACountryDto = new AuthorsfromACountryDto
+        {
+            Id = country.Id,
+            Name = country.Name,
+            Authors = country.Authors
+                .Select(a => new AuthorListDto
+                {
+                    FirstName = a.FirstName,
+                    LastName = a.LastName
+                })
+                .ToList()
+        };
+
+        return new List<AuthorsfromACountryDto> { authorsFromACountryDto };
     }
 
     public async Task<bool> CountryExistsAsync(int countryId)
