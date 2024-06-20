@@ -17,7 +17,7 @@ public static class ServiceCollectionExtensions
 
     public static void AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<ICountryRepository, CountryRepository>();
-        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IServerCountryRepository, ServerCountryRepository>();
+        services.AddScoped<IServerCategoryRepository, ServerCategoryRepository>();
     }
 }

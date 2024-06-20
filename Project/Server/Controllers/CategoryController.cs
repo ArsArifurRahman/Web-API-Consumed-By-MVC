@@ -9,9 +9,9 @@ namespace Server.Controllers;
 [ApiController]
 public class CategoryController : ControllerBase
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly IServerCategoryRepository _categoryRepository;
 
-    public CategoryController(ICategoryRepository categoryRepository)
+    public CategoryController(IServerCategoryRepository categoryRepository)
     {
         _categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
     }

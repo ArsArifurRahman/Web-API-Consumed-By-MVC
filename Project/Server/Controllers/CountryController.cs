@@ -9,9 +9,9 @@ namespace Server.Controllers;
 [ApiController]
 public class CountryController : ControllerBase
 {
-    private readonly ICountryRepository _countryRepository;
+    private readonly IServerCountryRepository _countryRepository;
 
-    public CountryController(ICountryRepository countryRepository)
+    public CountryController(IServerCountryRepository countryRepository)
     {
         _countryRepository = countryRepository ?? throw new ArgumentNullException(nameof(countryRepository));
     }

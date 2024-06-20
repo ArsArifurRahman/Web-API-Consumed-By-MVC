@@ -3,7 +3,7 @@ using Server.DTOs.Relations;
 
 namespace Server.Repository.Contracts;
 
-public interface ICountryRepository
+public interface IServerCountryRepository
 {
     Task<IEnumerable<CountryListDto>> GetCountriesAsync();
     Task<CountryReadDto> GetCountryAsync(int id);

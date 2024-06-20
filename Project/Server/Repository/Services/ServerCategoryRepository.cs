@@ -8,11 +8,11 @@ using Server.Repository.Contracts;
 
 namespace Server.Repository.Services;
 
-public class CategoryRepository : ICategoryRepository
+public class ServerCategoryRepository : IServerCategoryRepository
 {
     private readonly DataContext _context;
 
-    public CategoryRepository(DataContext context)
+    public ServerCategoryRepository(DataContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }

@@ -3,7 +3,7 @@ using Server.DTOs.Relations;
 
 namespace Server.Repository.Contracts;
 
-public interface ICategoryRepository
+public interface IServerCategoryRepository
 {
     Task<IEnumerable<CategoryListDto>> GetCategoriesAsync();
     Task<CategoryReadDto> GetCategoryAsync(int id);
