@@ -20,5 +20,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IServerCountryRepository, ServerCountryRepository>();
         services.AddScoped<IServerCategoryRepository, ServerCategoryRepository>();
         services.AddScoped<IServerBookRepository, ServerBookRepository>();
+        services.AddScoped<IServerAuthorRepository, ServerAuthorRepository>();
     }
 }

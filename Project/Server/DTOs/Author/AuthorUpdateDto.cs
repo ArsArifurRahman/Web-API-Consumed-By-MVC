@@ -1,9 +1,9 @@
-﻿namespace Server.DTOs.Author;
+namespace Server.DTOs.Author;
 
-public class AuthorReadDto
+public class AuthorUpdateDto
 {
     public int Id { get; set; }
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
-    public string CountryName { get; set; } = string.Empty;
+    public int CountryId { get; set; }
 }
