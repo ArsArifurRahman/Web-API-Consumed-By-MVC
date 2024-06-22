@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Server.Data;
+using Server.Repository;
 using Server.Repository.Contracts;
 using Server.Repository.Services;
 
@@ -21,6 +22,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IServerCategoryRepository, ServerCategoryRepository>();
         services.AddScoped<IServerBookRepository, ServerBookRepository>();
         services.AddScoped<IServerAuthorRepository, ServerAuthorRepository>();
+        services.AddScoped<IServerReviewRepository, ServerReviewRepository>();
         services.AddScoped<IServerReviewerRepository, ServerReviewerRepository>();
     }
 }

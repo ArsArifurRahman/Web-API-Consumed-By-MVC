@@ -5,6 +5,8 @@ using Server.DTOs.Reviewer;
 using Server.Models;
 using Server.Repository.Contracts;
 
+namespace Server.Repository;
+
 public class ServerReviewerRepository : IServerReviewerRepository
 {
     private readonly DataContext _context;
