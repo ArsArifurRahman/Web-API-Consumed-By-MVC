@@ -21,5 +21,6 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IServerCategoryRepository, ServerCategoryRepository>();
         services.AddScoped<IServerBookRepository, ServerBookRepository>();
         services.AddScoped<IServerAuthorRepository, ServerAuthorRepository>();
+        services.AddScoped<IServerReviewerRepository, ServerReviewerRepository>();
     }
 }
