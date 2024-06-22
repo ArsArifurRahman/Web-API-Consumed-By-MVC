@@ -1,71 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\repository\\services\\countryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|solutionrelative:server\\repository\\services\\countryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|solutionrelative:server\\controllers\\countrycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|c:\\users\\arsns\\onedrive\\desktop\\work\\web-api-consumed-by-mvc\\project\\server\\repository\\contracts\\icountryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFFBF1BF-A718-42DA-B10B-D92B3B41A15E}|Server\\Server.csproj|solutionrelative:server\\repository\\contracts\\icountryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ICountryRepository.cs",
-              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Repository\\Contracts\\ICountryRepository.cs",
-              "RelativeDocumentMoniker": "Server\\Repository\\Contracts\\ICountryRepository.cs",
-              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Repository\\Contracts\\ICountryRepository.cs",
-              "RelativeToolTip": "Server\\Repository\\Contracts\\ICountryRepository.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAA/wAsAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T16:52:29.334Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CountryController.cs",
-              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Controllers\\CountryController.cs",
-              "RelativeDocumentMoniker": "Server\\Controllers\\CountryController.cs",
-              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Controllers\\CountryController.cs",
-              "RelativeToolTip": "Server\\Controllers\\CountryController.cs",
-              "ViewState": "AQIAAEwAAAAAAAAAAAAxwJ4AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T16:38:33.635Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CountryRepository.cs",
-              "DocumentMoniker": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Repository\\Services\\CountryRepository.cs",
-              "RelativeDocumentMoniker": "Server\\Repository\\Services\\CountryRepository.cs",
-              "ToolTip": "C:\\Users\\arsns\\OneDrive\\Desktop\\Work\\Web-API-Consumed-By-MVC\\Project\\Server\\Repository\\Services\\CountryRepository.cs",
-              "RelativeToolTip": "Server\\Repository\\Services\\CountryRepository.cs",
-              "ViewState": "AQIAAIgAAAAAAAAAAAAIwK0AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T16:37:31.834Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
