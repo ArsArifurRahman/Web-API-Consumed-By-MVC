@@ -11,67 +11,101 @@ public class DataContext : DbContext
 
     public DbSet<Author> Authors { get; set; }
     public DbSet<Book> Books { get; set; }
-    public DbSet<Category> Categories { get; set; }
     public DbSet<Country> Countries { get; set; }
-    public DbSet<Review> Reviews { get; set; }
+    public DbSet<Critique> Critiques { get; set; }
+    public DbSet<Genre> Genres { get; set; }
     public DbSet<Reviewer> Reviewers { get; set; }
     public DbSet<BookAuthor> BookAuthors { get; set; }
-    public DbSet<BookCategory> BookCategories { get; set; }
+    public DbSet<BookGenre> BookGenres { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Configure Author & Country relationship
+        // Author
+        modelBuilder.Entity<Author>()
+            .HasIndex(a => new { a.FirstName, a.LastName })
+            .IsUnique();
+        modelBuilder.Entity<Author>()
+            .HasMany(a => a.BookAuthors)
+            .WithOne(ba => ba.Author)
+            .HasForeignKey(ba => ba.AuthorId)
+            .OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<Author>()
             .HasOne(a => a.Country)
             .WithMany(c => c.Authors)
             .HasForeignKey(a => a.CountryId)
-            .IsRequired();
+            .OnDelete(DeleteBehavior.Restrict);
 
-        // Configure Book & Review relationship
+        // Book
+        modelBuilder.Entity<Book>()
+            .HasIndex(b => b.Isbn)
+            .IsUnique();
+        modelBuilder.Entity<Book>()
+            .HasIndex(b => b.Title)
+            .IsUnique();
+        modelBuilder.Entity<Book>()
+            .Property(b => b.PublishedAt)
+            .HasColumnType("Date");
+
         modelBuilder.Entity<Book>()
             .HasMany(b => b.Reviews)
             .WithOne(r => r.Book)
             .HasForeignKey(r => r.BookId)
-            .IsRequired();
+            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Book>()
+            .HasMany(b => b.BookAuthors)
+            .WithOne(ba => ba.Book)
+            .HasForeignKey(ba => ba.BookId)
+            .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<Book>()
+            .HasMany(b => b.BookGenres)
+            .WithOne(bg => bg.Book)
+            .HasForeignKey(bg => bg.BookId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        // Configure Book & BookAuthor relationship
+        // Country
+        modelBuilder.Entity<Country>()
+            .HasIndex(c => c.Name)
+            .IsUnique();
+
+        // Critique
+        modelBuilder.Entity<Critique>()
+            .HasOne(c => c.Book)
+            .WithMany(b => b.Reviews)
+            .HasForeignKey(c => c.BookId)
+            .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Critique>()
+            .HasOne(c => c.Reviewer)
+            .WithMany(r => r.Critiques)
+            .HasForeignKey(c => c.ReviewerId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Genre
+        modelBuilder.Entity<Genre>()
+            .HasIndex(g => g.Name)
+            .IsUnique();
+        modelBuilder.Entity<Genre>()
+            .HasMany(g => g.BookGenres)
+            .WithOne(bg => bg.Genre)
+            .HasForeignKey(bg => bg.GenreId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Reviewer
+        modelBuilder.Entity<Reviewer>()
+            .HasIndex(r => new { r.FirstName, r.LastName })
+            .IsUnique();
+        modelBuilder.Entity<Reviewer>()
+            .HasMany(r => r.Critiques)
+            .WithOne(c => c.Reviewer)
+            .HasForeignKey(c => c.ReviewerId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // BookAuthor
         modelBuilder.Entity<BookAuthor>()
             .HasKey(ba => new { ba.BookId, ba.AuthorId });
 
-        modelBuilder.Entity<BookAuthor>()
-            .HasOne(ba => ba.Book)
-            .WithMany(b => b.BookAuthors)
-            .HasForeignKey(ba => ba.BookId)
-            .IsRequired();
-
-        modelBuilder.Entity<BookAuthor>()
-            .HasOne(ba => ba.Author)
-            .WithMany(a => a.BookAuthors)
-            .HasForeignKey(ba => ba.AuthorId)
-            .IsRequired();
-
-        // Configure Book & BookCategory relationship
-        modelBuilder.Entity<BookCategory>()
-            .HasKey(bc => new { bc.BookId, bc.CategoryId });
-
-        modelBuilder.Entity<BookCategory>()
-            .HasOne(bc => bc.Book)
-            .WithMany(b => b.BookCategories)
-            .HasForeignKey(bc => bc.BookId)
-            .IsRequired();
-
-        modelBuilder.Entity<BookCategory>()
-            .HasOne(bc => bc.Category)
-            .WithMany(c => c.BookCategories)
-            .HasForeignKey(bc => bc.CategoryId)
-            .IsRequired();
-
-        // Configure Review & Reviewer relationship
-        modelBuilder.Entity<Review>()
-            .HasOne(r => r.Reviewer)
-            .WithMany(rev => rev.Reviews)
-            .HasForeignKey(r => r.ReviewerId)
-            .IsRequired();
+        // BookGenre
+        modelBuilder.Entity<BookGenre>()
+            .HasKey(bg => new { bg.BookId, bg.GenreId });
 
         // Seed data
         SeedData(modelBuilder);
@@ -97,13 +131,13 @@ public class DataContext : DbContext
             new Author { Id = 5, FirstName = "Arundhati", LastName = "Roy", CountryId = 5 }
         );
 
-        // Seed data for Category
-        modelBuilder.Entity<Category>().HasData(
-            new Category { Id = 1, Name = "Fiction" },
-            new Category { Id = 2, Name = "Non-Fiction" },
-            new Category { Id = 3, Name = "Biography" },
-            new Category { Id = 4, Name = "Children's" },
-            new Category { Id = 5, Name = "Mystery" }
+        // Seed data for Genre
+        modelBuilder.Entity<Genre>().HasData(
+            new Genre { Id = 1, Name = "Fiction" },
+            new Genre { Id = 2, Name = "Non-Fiction" },
+            new Genre { Id = 3, Name = "Biography" },
+            new Genre { Id = 4, Name = "Children's" },
+            new Genre { Id = 5, Name = "Mystery" }
         );
 
         // Seed data for Book
@@ -125,12 +159,12 @@ public class DataContext : DbContext
         );
 
         // Seed data for Review
-        modelBuilder.Entity<Review>().HasData(
-            new Review { Id = 1, Headline = "Terrifying Read", ReviewText = "Stephen King's 'It' is a terrifying journey into the depths of fear.", Rating = 5, BookId = 1, ReviewerId = 1 },
-            new Review { Id = 2, Headline = "Magical Adventure", ReviewText = "Rowling's debut novel is a magical adventure for all ages.", Rating = 5, BookId = 2, ReviewerId = 2 },
-            new Review { Id = 3, Headline = "Dystopian Masterpiece", ReviewText = "Atwood's 'The Handmaid's Tale' is a chilling vision of a dystopian future.", Rating = 5, BookId = 3, ReviewerId = 3 },
-            new Review { Id = 4, Headline = "Australian Classic", ReviewText = "Winton's 'Cloudstreet' is a sprawling epic of Australian life.", Rating = 4, BookId = 4, ReviewerId = 4 },
-            new Review { Id = 5, Headline = "Beautiful and Heartbreaking", ReviewText = "Roy's debut novel is a beautiful and heartbreaking tale of love and loss.", Rating = 4, BookId = 5, ReviewerId = 5 }
+        modelBuilder.Entity<Critique>().HasData(
+            new Critique { Id = 1, Headline = "Terrifying Read", ReviewText = "Stephen King's 'It' is a terrifying journey into the depths of fear.", Rating = 5, BookId = 1, ReviewerId = 1 },
+            new Critique { Id = 2, Headline = "Magical Adventure", ReviewText = "Rowling's debut novel is a magical adventure for all ages.", Rating = 5, BookId = 2, ReviewerId = 2 },
+            new Critique { Id = 3, Headline = "Dystopian Masterpiece", ReviewText = "Atwood's 'The Handmaid's Tale' is a chilling vision of a dystopian future.", Rating = 5, BookId = 3, ReviewerId = 3 },
+            new Critique { Id = 4, Headline = "Australian Classic", ReviewText = "Winton's 'Cloudstreet' is a sprawling epic of Australian life.", Rating = 4, BookId = 4, ReviewerId = 4 },
+            new Critique { Id = 5, Headline = "Beautiful and Heartbreaking", ReviewText = "Roy's debut novel is a beautiful and heartbreaking tale of love and loss.", Rating = 4, BookId = 5, ReviewerId = 5 }
         );
 
         // Seed data for BookAuthor
@@ -143,12 +177,12 @@ public class DataContext : DbContext
         );
 
         // Seed data for BookCategory
-        modelBuilder.Entity<BookCategory>().HasData(
-            new BookCategory { BookId = 1, CategoryId = 5 },
-            new BookCategory { BookId = 2, CategoryId = 4 },
-            new BookCategory { BookId = 3, CategoryId = 1 },
-            new BookCategory { BookId = 4, CategoryId = 1 },
-            new BookCategory { BookId = 5, CategoryId = 1 }
+        modelBuilder.Entity<BookGenre>().HasData(
+            new BookGenre { BookId = 1, GenreId = 5 },
+            new BookGenre { BookId = 2, GenreId = 4 },
+            new BookGenre { BookId = 3, GenreId = 1 },
+            new BookGenre { BookId = 4, GenreId = 1 },
+            new BookGenre { BookId = 5, GenreId = 1 }
         );
     }
 }

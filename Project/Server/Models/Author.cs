@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Models;
 
+[Index(nameof(FirstName), nameof(LastName), IsUnique = true)]
 public class Author
 {
     [Key]

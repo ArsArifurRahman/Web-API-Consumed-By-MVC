@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Server.Models;
 
 [Index(nameof(Name), IsUnique = true)]
-public class Country
+public class Genre
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,10 +15,10 @@ public class Country
     [StringLength(32, ErrorMessage = "Name cannot be longer than 32 characters.")]
     public string Name { get; set; } = string.Empty;
 
-    public virtual ICollection<Author> Authors { get; set; }
+    public virtual ICollection<BookGenre> BookGenres { get; set; }
 
-    public Country()
+    public Genre()
     {
-        Authors = new List<Author>();
+        BookGenres = new List<BookGenre>();
     }
 }

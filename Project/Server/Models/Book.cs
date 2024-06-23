@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Models;
 
+[Index(nameof(Isbn), IsUnique = true)]
+[Index(nameof(Title), IsUnique = true)]
 public class Book
 {
     [Key]
@@ -17,16 +20,18 @@ public class Book
     [StringLength(32, ErrorMessage = "Title cannot be longer than 32 characters.")]
     public string Title { get; set; } = string.Empty;
 
-    public DateTimeOffset PublishedAt { get; set; } = DateTimeOffset.UtcNow;
+    [Required(ErrorMessage = "Published date is required.")]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+    public DateTimeOffset PublishedAt { get; set; }
 
-    public virtual ICollection<Review> Reviews { get; set; }
+    public virtual ICollection<Critique> Reviews { get; set; }
     public virtual ICollection<BookAuthor> BookAuthors { get; set; }
-    public virtual ICollection<BookCategory> BookCategories { get; set; }
+    public virtual ICollection<BookGenre> BookGenres { get; set; }
 
     public Book()
     {
-        Reviews = new List<Review>();
+        Reviews = new List<Critique>();
         BookAuthors = new List<BookAuthor>();
-        BookCategories = new List<BookCategory>();
+        BookGenres = new List<BookGenre>();
     }
 }
